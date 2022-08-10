@@ -61,6 +61,8 @@ function pad(param) {
 }
 
 function startParse() {
+  ref.btn.setAttribute('disabled', 'true');
+  ref.inp.setAttribute('disabled', 'true');
   const date = new Date(ref.inp.value).getTime();
   timerId = setInterval(() => {
     const { days, hours, minutes, seconds } = convertMs(date - Date.now());
@@ -73,6 +75,8 @@ function startParse() {
     if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
       clearInterval(timerId);
       Notify.success('The end!!!');
+      ref.btn.removeAttribute('disabled');
+      ref.inp.removeAttribute('disabled');
     }
   }, 1000);
 }
